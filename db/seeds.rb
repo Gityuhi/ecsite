@@ -8,76 +8,75 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-product1 = Product.create!(
-  name: '商品1',
-  price: 1000,
-  description: 'これは商品1です。'
-)
-product1.image.attach(
-  io: File.open(Rails.root.join('app/assets/images/glasses.png')),
-  filename: 'glasses.png'
-)
+Product.find_or_create_by!(name: '商品1') do |product|
+  product.price = 1000
+  product.description = 'これは商品1です。'
+  product.image.attach(
+    io: File.open(Rails.root.join('app/assets/images/glasses.png')),
+    filename: 'glasses.png'
+  )
+end
 
-product2 = Product.create!(
-  name: '商品2',
-  price: 2000,
-  description: 'これは商品2です。'
-)
-product2.image.attach(
-  io: File.open(Rails.root.join('app/assets/images/bag.png')),
-  filename: 'bag.png'
-)
-product3 = Product.create!(
-  name: '商品3',
-  price: 3000,
-  description: 'これは商品3です。'
-)
-product3.image.attach(
-  io: File.open(Rails.root.join('app/assets/images/camera.png')),
-  filename: 'camera.png'
-)
-product4 = Product.create!(
-  name: '商品4',
-  price: 4000,
-  description: 'これは商品4です。'
-)
-product4.image.attach(
-  io: File.open(Rails.root.join('app/assets/images/chair.png')),
-  filename: 'chair.png'
-)
-product5 = Product.create!(
-  name: '商品5',
-  price: 5000,
-  description: 'これは商品5です。'
-)
-product5.image.attach(
-  io: File.open(Rails.root.join('app/assets/images/headphone.png')),
-  filename: 'headphone.png'
-)
-product6 = Product.create!(
-  name: '商品6',
-  price: 6000,
-  description: 'これは商品6です。'
-)
-product6.image.attach(
-  io: File.open(Rails.root.join('app/assets/images/houseplants.png')),
-  filename: 'houseplants.png'
-)
-product7 = Product.create!(
-  name: '商品7',
-  price: 7000,
-  description: 'これは商品7です。'
-)
-product7.image.attach(
-  io: File.open(Rails.root.join('app/assets/images/shoes.png')),
-  filename: 'shoes.png'
-)
-product8 = Product.create!(
-  name: '商品8',
-  price: 8000,
-  description: 'これは商品8です。'
-)
-product8.image.attach(
-  io: File.open(Rails.root.join('app/assets/images/watch.png')),
-  filename: 'watch.png'
-)
+Product.find_or_create_by!(name: '商品2') do |product|
+  product.price = 2000
+  product.description = 'これは商品2です。'
+  product.image.attach(
+    io: File.open(Rails.root.join('app/assets/images/bag.png')),
+    filename: 'bag.png'
+  )
+end
+
+Product.find_or_create_by!(name: '商品3') do |product|
+  product.price = 3000
+  product.description = 'これは商品3です。'
+  product.image.attach(
+    io: File.open(Rails.root.join('app/assets/images/camera.png')),
+    filename: 'camera.png'
+  )
+end
+
+Product.find_or_create_by!(name: '商品4') do |product|
+  product.price = 4000
+  product.description = 'これは商品4です。'
+  product.image.attach(
+    io: File.open(Rails.root.join('app/assets/images/chair.png')),
+    filename: 'chair.png'
+  )
+end
+
+Product.find_or_create_by!(name: '商品5') do |product|
+  product.price = 5000
+  product.description = 'これは商品5です。'
+  product.image.attach(
+    io: File.open(Rails.root.join('app/assets/images/headphone.png')),
+    filename: 'headphone.png'
+  )
+end
+
+Product.find_or_create_by!(name: '商品6') do |product|
+  product.price = 6000
+  product.description = 'これは商品6です。'
+  product.image.attach(
+    io: File.open(Rails.root.join('app/assets/images/houseplants.png')),
+    filename: 'houseplants.png'
+  )
+end
+
+Product.find_or_create_by!(name: '商品7') do |product|
+  product.price = 7000
+  product.description = 'これは商品7です。'
+  product.image.attach(
+    io: File.open(Rails.root.join('app/assets/images/shoes.png')),
+    filename: 'shoes.png'
+  )
+end
+
+Product.find_or_create_by!(name: '商品8') do |product|
+  product.price = 8000
+  product.description = 'これは商品8です。'
+  product.image.attach(
+    io: File.open(Rails.root.join('app/assets/images/watch.png')),
+    filename: 'watch.png'
+  )
+end
+
