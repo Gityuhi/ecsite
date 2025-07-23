@@ -79,4 +79,3 @@ Product.find_or_create_by!(name: '商品8') do |product|
     filename: 'watch.png'
   )
 end
-
