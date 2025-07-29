@@ -10,7 +10,7 @@
     <%= stylesheet_link_tag "detail-custom_template", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </head>
-  <body>
+  <body style="min-height: 100vh; display: flex; flex-direction: column;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href= "/">Start Bootstrap</a>
@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/products">admin</a></li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -40,9 +40,9 @@
       </div>
     </nav>
     <%= yield %>
-    <footer class="py-5 bg-dark">
+    <footer class="py-3 bg-dark text-white text-center mt-auto" style="width: 100%;">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2025</p>
+        <p class="m-0">Copyright &copy; Your Website 2025</p>
       </div>
     </footer>
   </body>
