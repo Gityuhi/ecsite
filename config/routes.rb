@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products
   end
-  resources :products
+  resources :products, only: %i[index show] do
+    resources :cart_items, only: [:create]
+  end
+  resource :cart, only: [:show]
+  resources :cart_items, only: [:destroy]
 
   # get 'admin/products', to: 'admin#index'
   # get 'admin/products/new', to: 'admin#new'
