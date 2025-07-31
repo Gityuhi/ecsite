@@ -9,15 +9,15 @@
       <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-muted">Your cart</span>
-          <span class="badge badge-secondary badge-pill"><%= @cart.cart_items.sum(:quantity) %></span>
+          <span class="badge badge-secondary badge-pill"><%= current_cart.cart_items.sum(:quantity) %></span>
         </h4>
         <ul class="list-group mb-3">
-          <% if @cart.cart_items.blank? %>
+          <% if current_cart.cart_items.blank? %>
             <li class="list-group-item">
               カートは空です。
             </li>
           <% else %>
-            <% @cart.cart_items.each do |cart_item| %>
+            <% current_cart.cart_items.each do |cart_item| %>
               <li class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
                   <h6 class="my-0"><%= cart_item.product.name %> (数量: <%= cart_item.quantity %>)</h6>
@@ -26,12 +26,12 @@
                     <%= button_to '削除', cart_item_path(cart_item), method: :delete, class: 'btn btn-sm btn-outline-danger' %>
                   </div>
                 </div>
-                <span class="text-muted"><%= number_to_currency(cart_item.product.price * cart_item.quantity, unit: "円", precision: 0, format: "%n%u") %></span>
+                <span class="text-muted"><%= number_to_currency(cart_item.product_price_total, unit: "円", precision: 0, format: "%n%u") %></span>
               </li>
             <% end %>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total</span>
-              <strong><%= number_to_currency(@cart.total_price, unit: "円", precision: 0, format: "%n%u") %></strong>
+              <strong><%= number_to_currency(current_cart.total_price, unit: "円", precision: 0, format: "%n%u") %></strong>
             </li>
           <% end %>
         </ul>

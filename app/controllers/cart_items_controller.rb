@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
 class CartItemsController < ApplicationController
-  before_action :set_cart
-
   def create
-    @cart_item = @cart.cart_items.find_by(product_id: params[:product_id])
+    @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
 
-    if @cart_item
-      @cart_item.quantity += params[:quantity].present? ? params[:quantity].to_i : 1
-    else
-      @cart_item = @cart.cart_items.build(product_id: params[:product_id], quantity: (params[:quantity] || 1))
-    end
-    @cart_item.save
+    quantity = params[:quantity].present? ? params[:quantity].to_i : 1
+    @cart_item = current_cart.cart_items.find_or_initialize_by(product_id: params[:product_id])
+    @cart_item.quantity += quantity if @cart_item.persisted?
+    @cart_item.quantity = quantity unless @cart_item.persisted?
 
     if @cart_item.save
       redirect_to request.referer, notice: '商品をカートに追加しました。'
@@ -21,14 +17,8 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    @cart_item = @cart.cart_items.find(params[:id])
+    @cart_item = current_cart.cart_items.find(params[:id])
     @cart_item.destroy
     redirect_to cart_path
-  end
-
-  private
-
-  def set_cart
-    @cart = current_cart
   end
 end
