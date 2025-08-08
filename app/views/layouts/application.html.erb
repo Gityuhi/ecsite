@@ -11,6 +11,18 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
   </head>
   <body style="min-height: 100vh; display: flex; flex-direction: column;">
+    <% flash.each do |message_type, message| %>
+      <% if message_type == 'notice' %>
+        <% alert_class = 'success' %>
+      <% elsif message_type == 'alert' %>
+        <% alert_class = 'danger' %>
+      <% else %>
+        <% alert_class = 'info' %>
+      <% end %>
+      <div class="alert alert-<%= alert_class %>" role="alert">
+        <%= message %>
+      </div>
+    <% end %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href= "/">Start Bootstrap</a>
@@ -30,11 +42,11 @@
             </li>
           </ul>
           <form class="d-flex">
-            <button class="btn btn-outline-dark" type="submit">
+            <%= link_to cart_path, class: "btn btn-outline-dark" do %>
               <i class="bi-cart-fill me-1"></i>
               Cart
-              <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-            </button>
+              <span class="badge bg-dark text-white ms-1 rounded-pill"><%= current_cart.cart_items.sum(:quantity) %></span>
+            <% end %>
           </form>
         </div>
       </div>
